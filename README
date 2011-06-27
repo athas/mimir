@@ -1,0 +1,2 @@
+MIMIR is an extensible IRC bot written in shell script.  It uses ii as
+the IRC backend.
