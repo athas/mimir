@@ -1,0 +1,15 @@
+#!/bin/sh
+#
+# Extract documentation for the given command, provided the lazy git
+# who wrote it bothered to write some.
+
+. $MIMIR_DIR/mimir.lib
+
+if [ $# -lt 1 ]; then
+    echo "Usage: help <command>"
+elif [ -f "$MIMIR_DIR/cmds/$1" ]; then
+    echo "$1: "
+    cat $MIMIR_DIR/cmds/$1 | docstring
+else
+    echo "There is no command by the name $1."
+fi

@@ -1,0 +1,7 @@
+#!/bin/sh
+#
+# List the available commands.
+
+. $MIMIR_DIR/mimir.lib
+
+ls $MIMIR_DIR/cmds | enumerate

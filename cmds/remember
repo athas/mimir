@@ -1,0 +1,13 @@
+#!/bin/sh
+#
+# Remember a given factoid for later reference via 'explain' or
+# 'wisdom'.
+
+. "$MIMIR_DIR/mimir.lib"
+
+if [ "$CMD_ARGS" ]; then
+    echo "$CMD_ARGS" >> "$MIMIR_DB_DIR/facts"
+    echo "Got it!"
+else
+    echo "Remember what?"
+fi 

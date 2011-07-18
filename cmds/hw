@@ -1,0 +1,8 @@
+#!/bin/sh
+#
+# Basic sanity-testing command.
+
+echo "Hello $CMD_USER!"
+echo "The parameters were $CMD_ARGS."
+echo "The full line was $CMD_LINE."
+echo "Argv is $*."

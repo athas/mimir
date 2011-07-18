@@ -1,0 +1,14 @@
+#!/bin/sh
+
+dir=$(dirname $0)
+cfg=$dir/mimir.conf
+. $cfg
+
+# Connect to IRC server.
+ii -s $irc_server -p $irc_server_port -i $irc_dir -n $irc_username -f $irc_realname &
+
+# Wait for connection to stabilize...
+sleep 2
+
+# Join our channel.
+echo '/j '$irc_channel > $irc_dir'/'$irc_server'/in'

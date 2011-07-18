@@ -1,0 +1,15 @@
+#!/bin/sh
+#
+# Search the (possibly!) exhaustive database of known facts for the
+# given string.  The fact database can be extended with the 'remember'
+# command.
+
+. $MIMIR_DIR/mimir.lib
+
+if [ "$CMD_ARGS" ]; then
+    if ! (cat $MIMIR_DB_DIR/facts | sort | grep -F -i "$CMD_ARGS"); then
+        echo "I don't know anything about $CMD_ARGS."
+    fi
+else
+    echo "Explain what?"
+fi 

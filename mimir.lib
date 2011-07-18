@@ -1,0 +1,26 @@
+# Shell script function definitions
+
+docstring() {
+    awk 'BEGIN{indoc=1}\
+/^#!/{next}\
+/^[^#]/{indoc=0}\
+/^# ?$/{next}\
+indoc{out = out substr($0, 3, length($0)) " "}\
+END{print out}'
+}
+
+commasize() {
+    awk '{if (out && last) { out = out ", " last; last = $0 }\
+else if (out) { last = $0 }\
+else { out = $0 } }\
+END{ if (last) { if (out) { out = out ", " last } else { out = last } };\
+print out }'
+}
+
+enumerate() {
+    awk '{if (out && last) { out = out ", " last; last = $0 }\
+else if (out) { last = $0 }\
+else { out = $0 } }\
+END{ if (last) { if (out) { out = out " and " last } else { out = last } };\
+print out }'
+}

@@ -1,0 +1,7 @@
+#!/bin/sh
+#
+# Interrupt the discussion with a salient fact.
+
+. $MIMIR_DIR/mimir.lib
+
+cat $MIMIR_DB_DIR/facts | grep -i ".*$1" | sort -R | head -n 1
