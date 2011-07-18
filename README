@@ -1,2 +1,38 @@
-MIMIR is an extensible IRC bot written in shell script.  It uses ii as
-the IRC backend.
+Description
+===========
+
+Mimir is an extensible IRC bot written in shell script.  It uses
+[ii][ii] as the IRC backend.  The source code is intended to be very
+short and hackable.
+
+As of this writing, Mimir only supports being on a single channel on a
+single IRC server, although there is nothing preventing you from
+running multiple Mimir instances that share the same state database.
+
+Technical overview
+------------------
+
+The bot consists of two independent subprograms: mimir_irc, which sets
+up the connection to the IRC server (basically just invoking ii and
+joining the channel, although arbitrary commands can be inserted), and
+mimir proper, which reads and writes to the files created by ii.  This
+means that the bot can be modified (or crash) without affecting the
+connection to the IRC server.
+
+Mimir reacts to channel messages of the form 'mimirbot_name: <command>
+[arguments]'.  It will look in the cmds/ directory for an executable
+file with the name of the command, and execute it with the given
+arguments if found.  The standard output of the command will be sent
+to the channel.  While a command is being executed, $CMD_USER will be
+the user that asked for the command, $CMD_ARGS will be the literal
+command line arguments as a whitespace-preserved string, and $CMD_LINE
+will be the full line, including command name.
+
+Limitations
+-----------
+
+Mimir does not react well to unexpected occurences (it mostly ignores
+them).  If its nick is already in use, or it is kicked from the
+channel, it will make no attempt to recover.
+
+[ii]: http://tools.suckless.org/ii/
